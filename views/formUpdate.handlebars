@@ -1,0 +1,31 @@
+
+<main>
+  {{!form}}
+
+  <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <form action="/editar"  method="post" enctype="multipart/form-data">
+               
+                    <input type="number" value="{{produto.codigo}}" name="codigo" readonly><br>
+                    <img src="../imagens/{{produto.imagem}}" ><br><br>
+
+                    <input type="hidden" name="novaImagem" value="{{produto.imagem}}">
+                    <input class="form-control" type="text" name="nome" id="" value="{{produto.nome}}"/>
+                    <input class="form-control" type="number" name="preco" value="{{produto.valor}}" id="">
+                    <input class="form-control" type="file" name="imagem" id="">
+                    <button class="btn btn-primary btn-sm" type="submit">Editar</button>
+                    <a href="/" class="btn btn-secondary btn-sm">Cancelar</a>
+                
+                </form>
+            </div>
+            
+        </div>
+      
+  </div>
+   
+</main>
+
+<script>
+
+</script>

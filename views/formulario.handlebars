@@ -1,0 +1,78 @@
+
+
+  {{!form}}
+
+  <div class="container">
+        <div class="row">
+            <div class="col-6 offset-3">
+
+                {{!--Mensagens --}}
+                {{#condicionalIgualdade situacao "cadastrado"}}
+                    <div class="alert alert-success">Produto cadastrado com sucesso.</div>
+                {{/condicionalIgualdade}}
+
+                  {{!--Mensagens --}}
+                {{#condicionalIgualdade situacao "removido"}}
+                    <div class="alert alert-success">Produto excluido com sucesso.</div>
+                {{/condicionalIgualdade}}
+
+                  {{!--Mensagens --}}
+                {{#condicionalIgualdade situacao "okEdition"}}
+                    <div class="alert alert-success">Produto editado com sucesso.</div>
+                {{/condicionalIgualdade}}
+
+
+
+                {{#condicionalIgualdade situacao "falhaCadastro"}}
+                <div class="alert alert-danger">Falha ao cadastrar o produto, tente novamente.</div>
+                {{/condicionalIgualdade}}
+
+                {{#condicionalIgualdade situacao "falhaEdition"}}
+                <div class="alert alert-danger">Falha ao editar o produto, tente novamente.</div>
+                {{/condicionalIgualdade}}
+
+                {{#condicionalIgualdade situacao "falhaAoRemover"}}
+                <div class="alert alert-danger">Falha ao remover o produto, tente novamente.</div>
+                {{/condicionalIgualdade}}
+
+
+
+                <form action="/cadastrar"  method="post" enctype="multipart/form-data">
+                    <input class="form-control" type="text" name="nome" id="" placeholder="Nome do produto">
+                    <input class="form-control" type="number" name="preco" placeholder="preço do produto" id="">
+                    <input class="form-control" type="file" name="imagem" id="">
+                    <button class="btn btn-success btn-sm mt-1" type="submit">Cadastrar</button>
+
+                </form>
+            </div>
+            
+        </div>
+      
+  </div>
+    <!--TABELA para listagem-->
+<br>
+    <div class="container">
+        <div class="row">
+           {{#each produtos}}
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="card">
+                    <img src="../imagens/{{imagem}}">
+                    <div class="text">
+                         <p>{{nome}}</p>
+                        <p>R$ {{valor}}</p>
+                     </div>
+                     <div class="btcontainer">
+                         <a href="/editar/{{codigo}}" class="btn btn-warning btn-sm">Alterar</a>
+                        <a href="/deletar/{{codigo}}&{{imagem}}" type="submit" id="btnremove" class="btn btn-danger btn-sm">Remover</a>
+                     </div>
+                       
+                </div>
+            </div>
+           {{/each}}
+        </div>
+    </div>
+</main>
+
+<script>
+
+</script>

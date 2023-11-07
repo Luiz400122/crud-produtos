@@ -1,0 +1,34 @@
+form{
+    margin-top: 30px;
+    text-align: center;
+
+}
+form input{
+    margin-bottom: 15px;
+}
+
+img{
+    height: 180px;
+}
+.card{
+    background-color: rgb(238, 236, 236);
+    margin-top: 40px;
+    padding: 5px;
+}
+
+body{
+    background-color: rgb(10, 62, 165);
+    padding-top: 50px;
+}
+.text{
+    display: flex;
+    justify-content:space-around ;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.btcontainer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
