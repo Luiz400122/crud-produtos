@@ -1,0 +1,49 @@
+
+{{!-- Elemento nav, responsável pela estrutura de navegação --}}
+<nav class="navbar navbar-expand-lg bg-primary">
+    
+    {{!-- Estrutura container do bootstrap para agrupar a estrutura --}}
+    <div class="container-fluid bg-primary">
+    
+        {{!-- Logo/Título do projeto --}}
+        <a class="navbar-brand text-light " href="/">Node.js e MySQL</a>
+    
+        {{!-- Botão que é exibido em versões de pequeno e médio porte (Até 991px) --}}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        {{!-- Estrutura contendo os links e o formulário para pesquisa --}}
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
+            {{!-- Lista de links --}}
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                
+                {{!-- Link de cadastro --}}
+                <li class="nav-item">
+                    <a class="nav-link text-light " href="/">Cadastrar produto</a>
+                </li>
+
+                {{!-- Dropdown contendo os links para listagem de produtos --}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-light " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Listar produtos
+                    </a>
+
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item " href="/listar/todos">Todos os produtos</a></li>
+                        <li><a class="dropdown-item" href="/listar/alimenticio">Alimentício</a></li>
+                        <li><a class="dropdown-item" href="/listar/eletronico">Eletrônico</a></li>
+                        <li><a class="dropdown-item" href="/listar/vestuario">Vestuário</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            {{!-- Formulário para realizar a pesquisa de produtos --}}
+            <form class="d-flex formularioPesquisa" method="post" action="/pesquisa">
+                <input class="form-control me-2 form-control-sm " name="termo" type="search" placeholder="Procurando algo?">
+                <input type="submit" value="Pesquisar" class="btn btn-primary btn-sm">
+            </form>
+        </div>
+    </div>
+</nav>

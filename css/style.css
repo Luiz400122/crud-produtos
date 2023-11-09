@@ -3,8 +3,12 @@ form{
     text-align: center;
 
 }
-form input{
-    margin-bottom: 15px;
+form input, form select{
+    margin-bottom: 10px;
+}
+
+.card{
+    width: 200px;
 }
 
 img{
@@ -17,8 +21,7 @@ img{
 }
 
 body{
-    background-color: rgb(10, 62, 165);
-    padding-top: 50px;
+    background-color: rgb(255, 255, 255);
 }
 .text{
     display: flex;
@@ -31,4 +34,25 @@ body{
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+
+
+
+/* Remover margem do formulário */
+.formularioPesquisa{
+    margin: 0;
+}
+
+/* Estrutura do formulário de pesquisa (barra de navegação) */
+.formularioPesquisa input,
+.formularioPesquisa input[type="submit"]
+{
+    margin: 0;
+}
+
+/* Configurar o dropdown para ser exibido quando passar o cursor sobre o link */
+.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
 }

@@ -44,40 +44,75 @@ app.set("views", "./views");
 
 //Root
 app.get("/", (req, res) => {
-  let sql = "SELECT * FROM produtos";
-  //execution
-  db.query(sql, function (err, retorno) {
-    if (err) throw err;
-    res.render("formulario", { produtos: retorno });
+  
+    res.render("formulario");
   });
-});
+
 
 //ROTA PRNCIPAL COM SITUAÇÃO
 app.get("/:situacao", (req, res) => {
-  let sql = "SELECT * FROM produtos";
-  //execution
-  db.query(sql, function (err, retorno) {
-    if (err) throw err;
+ 
     res.render("formulario", {
-      produtos: retorno,
+      //produtos: retorno,
       situacao: req.params.situacao,
-    });
+
   });
 });
+
+
+//Rota para pesquisa 
+
+app.post('/pesquisa', function(req, res){
+  //obter o termo pesquisado
+  let termo = req.body.termo
+  //sql
+
+  let sql = `SELECT * FROM produtos WHERE nome LIKE '%${termo}%'`;
+
+  db.query(sql, function(err, retorno){
+
+    let semRegistro = retorno.length == 0 ? true : false;
+    if (err) throw err;
+    
+      res.render('lista', {produtos:retorno, semRegistro: semRegistro})
+  })
+})
+
+//listagem 
+app.get('/listar/:categoria', (req, res)=>{
+  //obter categoria
+  let categoria = req.params.categoria
+
+  //sql
+  let sql = '';
+  if(categoria == 'todos'){
+    sql = 'SELECT * FROM produtos';
+  }else{
+    sql=`SELECT * FROM produtos WHERE categoria = '${categoria}'`;
+  }
+   //execution
+   db.query(sql, function (err, retorno) {
+    if (err) throw err;
+    res.render("lista", { produtos: retorno });
+  });
+
+})
+
 
 //cadastrar
 app.post("/cadastrar", function (req, res) {
   try {
     let nome = req.body.nome;
     let valor = req.body.preco;
+    let categoria = req.body.categoria
     let imagem = req.files.imagem.name;
 
     //validar produto e valor
 
-    if (nome == "" || valor == "" || isNaN(valor)) {
+    if (nome == "" || valor == "" || isNaN(valor) || categoria=='') {
       res.redirect("/falhaCadastro");
     } else {
-      let sql = `INSERT INTO produtos (nome, valor, imagem ) VALUES ('${nome}', ${valor}, '${imagem}')`;
+      let sql = `INSERT INTO produtos (nome, valor, imagem, categoria ) VALUES ('${nome}', ${valor}, '${imagem}', '${categoria}')`;
       db.query(sql, function (retorno) {
         req.files.imagem.mv(__dirname + "/imagens/" + req.files.imagem.name);
       });
